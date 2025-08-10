@@ -47,6 +47,11 @@ watch(
           :date="data?.data?.updated || 'No Date'"
         />
         <EpisodePlayer :src="mainPlayer || ''" />
+        <Message severity="warn" icon="pi pi-exclamation-triangle">
+          <p class="text-xs lg:text-base">
+            Hati-hati kegocek iklan, Jika halaman berpindah tekan tombol back saja!
+          </p>
+        </Message>
         <Message severity="info" icon="pi pi-refresh">
           <p class="text-xs lg:text-base">
             Jika pemutar tidak bekerja atau terus buffering, coba ganti dengan server di bawah ini
