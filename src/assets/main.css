@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+
+@theme inline {
+  --font-sans: var(--font-gabarito);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  @apply bg-white text-gray-900 selection:bg-emerald-600;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+.nata-sans {
+  font-family: 'Nata Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+.inter {
+  font-family: 'Inter', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.open-sans {
+  font-family: 'Open Sans', sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-variation-settings: 'wdth' 100;
+}
+
+.btn-play {
+  @apply bg-gray-900/5 dark:bg-white/5 border border-gray-900/40 dark:border-white/40 cursor-pointer hover:bg-white/20 transition-all active:bg-transparent py-2 rounded-md space-x-2 font-semibold;
+}
+
+/* Untuk Chrome dan WebKit */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a0 transparent; /* thumb & track */
+}
+@media (prefers-color-scheme: dark) {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #cbd5e0 transparent; /* thumb & track */
+  }
+}
+
+/* Untuk Chrome */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}

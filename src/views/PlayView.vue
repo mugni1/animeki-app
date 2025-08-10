@@ -1,0 +1,88 @@
+<script setup lang="ts">
+import { useGetPlayEpisode } from '@/hooks/useGetPlayEpisode'
+import { Message } from 'primevue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+// components
+import ErrorPage from '@/components/layouts/ErrorPage.vue'
+import BaseContainer from '@/components/shared/BaseContainer.vue'
+import CardAnime from '@/components/shared/CardAnime.vue'
+import FooterPage from '@/components/layouts/FooterPage.vue'
+import LoadingPage from '@/components/layouts/LoadingPage.vue'
+import EpisodePlayer from '@/components/shared/VideoPlayer/EpisodePlayer.vue'
+import TitleAndDatePlayEps from '@/components/shared/PlayEpisode/TitleAndDatePlayEps.vue'
+import ListServer from '@/components/shared/PlayEpisode/ListServer.vue'
+
+// state
+const route = useRoute()
+const mainPlayer = ref('')
+const { data, error, isError, isPending, refetch } = useGetPlayEpisode(route.params.slug as string)
+
+// Watch perubahan data
+watch(
+  () => data.value,
+  (newData) => {
+    if (newData?.data?.main_player) {
+      mainPlayer.value = newData.data.main_player
+    }
+  },
+  { immediate: true }, // langsung dijalankan saat mount
+)
+</script>
+
+<template>
+  <!-- Loading Page  -->
+  <LoadingPage v-if="isPending" />
+
+  <!-- Error Page  -->
+  <ErrorPage v-else-if="isError" v-model:error="error" @refetch="refetch()" />
+
+  <main v-else>
+    <BaseContainer class="grid grid-cols-1 lg:grid-cols-3 gap-5">
+      <!-- COLUMN 1  -->
+      <section class="lg:col-span-2 space-y-3">
+        <TitleAndDatePlayEps
+          :title="data?.data?.title || 'No Title'"
+          :date="data?.data?.updated || 'No Date'"
+        />
+        <EpisodePlayer :src="mainPlayer || ''" />
+        <Message severity="info" icon="pi pi-refresh">
+          <p class="text-xs lg:text-base">
+            Jika pemutar tidak bekerja atau terus buffering, coba ganti dengan server di bawah ini
+          </p>
+        </Message>
+        <ListServer
+          v-model:main-player="mainPlayer"
+          :listServer="data?.data?.mirror_server || []"
+        />
+      </section>
+      <!-- END COLUMN 1  -->
+
+      <!-- COLUMN 2  -->
+      <section class="lg:col-span-1">
+        <div class="flex">
+          <h2
+            class="mb-2 font-bold text-base flex items-center gap-2 text-emerald-500 border-b pe-5"
+          >
+            <i class="pi pi-thumbs-up"></i> Recomendation anime
+          </h2>
+        </div>
+        <div class="w-full grid grid-cols-3 gap-3">
+          <CardAnime
+            v-for="(anime, index) in data?.data?.recomended_animes || []"
+            :slug="anime.slug"
+            :status="'recomendation'"
+            :key="index"
+            :title="anime.title"
+            :type="anime.type_station"
+            :cover="anime.cover"
+            :eps="''"
+          />
+        </div>
+      </section>
+      <!-- END COLUMN 1  -->
+    </BaseContainer>
+    <FooterPage />
+  </main>
+</template>
