@@ -16,7 +16,6 @@ body {
 .my-app-dark body {
   @apply bg-gray-900 text-white;
 }
-
 .nata-sans {
   font-family: 'Nata Sans', sans-serif;
   font-optical-sizing: auto;

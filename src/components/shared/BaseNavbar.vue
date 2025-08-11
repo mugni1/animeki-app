@@ -18,6 +18,20 @@
       </div>
       <div class="lg:w-2/12 w-6/12 flex justify-end gap-2">
         <Button
+          v-if="appStore.isDark"
+          :unstyled="true"
+          class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
+          icon="pi pi-moon"
+          @click="appStore.changeToLightMode"
+        />
+        <Button
+          v-else
+          :unstyled="true"
+          class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
+          icon="pi pi-sun"
+          @click="appStore.changeToDarkMode"
+        />
+        <Button
           :unstyled="true"
           class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
           icon="pi pi-search"
@@ -30,7 +44,7 @@
             @click="toggle"
           />
           <Menu
-            class="!bg-gray-900"
+            class="dark:!bg-gray-900"
             ref="menu"
             id="overlay_menu"
             :model="items"
@@ -44,12 +58,12 @@
 </template>
 
 <script setup lang="ts">
+import { useAppStore } from '@/stores/app'
 import { Button, Menu } from 'primevue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
-
 const menu = ref()
 const items = ref([
   {
@@ -98,4 +112,6 @@ const items = ref([
 const toggle = (event: unknown) => {
   menu.value.toggle(event)
 }
+
+const appStore = useAppStore()
 </script>
