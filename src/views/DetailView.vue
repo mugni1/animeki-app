@@ -21,7 +21,13 @@
           />
           <!-- btn  -->
           <div class="grid grid-cols-2 gap-2 lg:grid-cols-1">
-            <Button :unstyled="true" class="btn-play" label="Play now" icon="pi pi-play-circle" />
+            <Button
+              :unstyled="true"
+              class="btn-play"
+              label="Play now"
+              icon="pi pi-play-circle"
+              @click="router.push('/play/' + data?.data.first_episode.episode_slug)"
+            />
             <Button :unstyled="true" class="btn-play" label="Add to favorite" icon="pi pi-heart" />
           </div>
           <!-- spe list  -->
@@ -92,7 +98,8 @@
 import { ref } from 'vue'
 import { useGetDetail } from '@/hooks/useGetDetail'
 import { Button } from 'primevue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+import { computed } from 'vue'
 
 // components
 import ErrorPage from '@/components/layouts/ErrorPage.vue'
@@ -101,7 +108,6 @@ import BgAnime from '@/components/shared/BgAnime.vue'
 import CoverAnime from '@/components/shared/DetailAnime/CoverAnime.vue'
 import SpeItem from '@/components/shared/DetailAnime/SpeItem.vue'
 import TabsDetail from '@/components/shared/DetailAnime/TabsDetail.vue'
-import { computed } from 'vue'
 import TabContentEpisode from '@/components/shared/DetailAnime/TabContentEpisode.vue'
 import RatingAnime from '@/components/shared/DetailAnime/RatingAnime.vue'
 import TabContentCharacters from '@/components/shared/DetailAnime/TabContentCharacters.vue'
@@ -112,6 +118,7 @@ import SinopsysAnime from '@/components/shared/DetailAnime/SinopsysAnime.vue'
 import TitleAnime from '@/components/shared/DetailAnime/TitleAnime.vue'
 
 const route = useRoute()
+const router = useRouter()
 const slug = route.params.slug as string
 const tab_active = ref('trailer')
 const { data, isPending, error, isError, refetch } = useGetDetail(slug)

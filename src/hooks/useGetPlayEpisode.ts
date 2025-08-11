@@ -20,9 +20,10 @@ export const fetch = async (slug: string): Promise<GetResponsePlay> => {
 }
 
 import { useQuery } from '@tanstack/vue-query'
-export const useGetPlayEpisode = (slug: string) => {
+import type { Ref } from 'vue'
+export const useGetPlayEpisode = (slug: Ref<string>) => {
   return useQuery({
     queryKey: ['play-episode', slug], // tambahkan slug agar cache berbeda tiap anime
-    queryFn: () => fetch(slug), // ✅ jangan langsung panggil, bungkus dalam arrow function
+    queryFn: () => fetch(slug.value), // ✅ jangan langsung panggil, bungkus dalam arrow function
   })
 }

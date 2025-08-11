@@ -1,36 +1,3 @@
-<script setup lang="ts">
-import { useGetPlayEpisode } from '@/hooks/useGetPlayEpisode'
-import { Message } from 'primevue'
-import { ref, watch } from 'vue'
-import { useRoute } from 'vue-router'
-
-// components
-import ErrorPage from '@/components/layouts/ErrorPage.vue'
-import BaseContainer from '@/components/shared/BaseContainer.vue'
-import CardAnime from '@/components/shared/CardAnime.vue'
-import FooterPage from '@/components/layouts/FooterPage.vue'
-import LoadingPage from '@/components/layouts/LoadingPage.vue'
-import EpisodePlayer from '@/components/shared/VideoPlayer/EpisodePlayer.vue'
-import TitleAndDatePlayEps from '@/components/shared/PlayEpisode/TitleAndDatePlayEps.vue'
-import ListServer from '@/components/shared/PlayEpisode/ListServer.vue'
-
-// state
-const route = useRoute()
-const mainPlayer = ref('')
-const { data, error, isError, isPending, refetch } = useGetPlayEpisode(route.params.slug as string)
-
-// Watch perubahan data
-watch(
-  () => data.value,
-  (newData) => {
-    if (newData?.data?.main_player) {
-      mainPlayer.value = newData.data.main_player
-    }
-  },
-  { immediate: true }, // langsung dijalankan saat mount
-)
-</script>
-
 <template>
   <!-- Loading Page  -->
   <LoadingPage v-if="isPending" />
@@ -57,6 +24,40 @@ watch(
             Jika pemutar tidak bekerja atau terus buffering, coba ganti dengan server di bawah ini
           </p>
         </Message>
+        <div class="grid grid-cols-2 gap-2">
+          <Button
+            v-if="data?.data?.prev_episode"
+            label="Prev episode"
+            icon="pi pi-angle-double-left"
+            variant="outlined"
+            @click="slug = data?.data?.prev_episode"
+          />
+          <Button
+            v-else
+            class="!cursor-not-allowed"
+            label="Prev episode"
+            icon="pi pi-angle-double-left"
+            variant="outlined"
+            severity="secondary"
+          />
+          <Button
+            v-if="data?.data?.next_episode"
+            label="Next episode"
+            icon="pi pi-angle-double-right"
+            iconPos="right"
+            variant="outlined"
+            @click="slug = data?.data?.next_episode"
+          />
+          <Button
+            v-else
+            class="!cursor-not-allowed"
+            label="Next episode"
+            icon="pi pi-angle-double-right"
+            iconPos="right"
+            variant="outlined"
+            severity="secondary"
+          />
+        </div>
         <ListServer
           v-model:main-player="mainPlayer"
           :listServer="data?.data?.mirror_server || []"
@@ -91,3 +92,48 @@ watch(
     <FooterPage />
   </main>
 </template>
+
+<script setup lang="ts">
+import { useGetPlayEpisode } from '@/hooks/useGetPlayEpisode'
+import { Button, Message } from 'primevue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
+
+// components
+import ErrorPage from '@/components/layouts/ErrorPage.vue'
+import BaseContainer from '@/components/shared/BaseContainer.vue'
+import CardAnime from '@/components/shared/CardAnime.vue'
+import FooterPage from '@/components/layouts/FooterPage.vue'
+import LoadingPage from '@/components/layouts/LoadingPage.vue'
+import EpisodePlayer from '@/components/shared/VideoPlayer/EpisodePlayer.vue'
+import TitleAndDatePlayEps from '@/components/shared/PlayEpisode/TitleAndDatePlayEps.vue'
+import ListServer from '@/components/shared/PlayEpisode/ListServer.vue'
+import router from '@/router'
+
+// state
+const route = useRoute()
+const mainPlayer = ref('')
+const slug = ref('')
+const { data, error, isError, isPending, refetch } = useGetPlayEpisode(computed(() => slug.value))
+
+// Watch perubahan data
+watch(
+  () => data.value,
+  (newData) => {
+    if (newData?.data?.main_player) {
+      mainPlayer.value = newData.data.main_player
+    }
+  },
+  { immediate: true }, // langsung dijalankan saat mount
+)
+watch(
+  () => slug.value,
+  (newVal) => {
+    router.push('/play/' + newVal)
+    refetch() // Query otomatis pakai page terbaru
+  },
+)
+onMounted(() => {
+  slug.value = route.params.slug as string
+})
+</script>
