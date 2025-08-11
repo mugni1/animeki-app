@@ -13,12 +13,14 @@
         :animes="data?.data?.ongoing_anime || []"
         icon="pi pi-clock"
         title="Ongoing anime"
+        :show-more="true"
       />
       <ListAnime
         :animes="data?.data?.completed_anime || []"
         type="completed"
         icon="pi pi-check-circle"
         title="Completed anime"
+        :show-more="true"
       />
     </BaseContainer>
     <FooterPage />

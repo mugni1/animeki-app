@@ -4,6 +4,7 @@ import { EDNPOINT } from './endpoints'
 import type { getAnimeHomeResponse } from '@/types/home'
 import type { DetailResponse } from '@/types/detail'
 import type { GetResponsePlay } from '@/types/play'
+import type { getResponseOngoing } from '@/types/ongoing'
 
 export const animeHomeAPI = async (): Promise<AxiosResponse<getAnimeHomeResponse>> => {
   return httpClient.get(EDNPOINT.HOME)
@@ -15,4 +16,11 @@ export const animeDetailAPI = async (slug: string): Promise<AxiosResponse<Detail
 
 export const playEpisodeAPI = async (slug: string): Promise<AxiosResponse<GetResponsePlay>> => {
   return httpClient.get(EDNPOINT.PLAY + '/' + slug)
+}
+
+export const ongoingAPI = async (
+  page: string | null,
+): Promise<AxiosResponse<getResponseOngoing>> => {
+  const currentPage = page || 1
+  return httpClient.get(EDNPOINT.ONGOING + '?page=' + currentPage)
 }

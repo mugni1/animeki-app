@@ -4,7 +4,10 @@
       <h2 class="mb-2 font-bold text-base flex items-center gap-2 text-emerald-500 border-b pe-5">
         <i :class="icon"></i> {{ title }}
       </h2>
-      <RouterLink :to="type" class="text-base border-b ps-5 text-sky-500 mb-2 font-bold"
+      <RouterLink
+        v-if="showMore"
+        :to="type"
+        class="text-base border-b ps-5 text-sky-500 mb-2 font-bold"
         >Show more</RouterLink
       >
     </div>
@@ -32,5 +35,6 @@ const { animes, title, icon, type } = defineProps<{
   title: string
   icon: string
   type: 'completed' | 'ongoing' | 'recomendation'
+  showMore?: boolean
 }>()
 </script>

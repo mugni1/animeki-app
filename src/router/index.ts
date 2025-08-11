@@ -1,5 +1,6 @@
 import DetailView from '@/views/DetailView.vue'
 import HomeView from '@/views/HomeView.vue'
+import OngoingView from '@/views/OngoingView.vue'
 import PlayView from '@/views/PlayView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -12,6 +13,7 @@ const router = createRouter({
     { path: '/', name: 'home', component: HomeView },
     { path: '/detail/:slug', name: 'detail-anime', component: DetailView },
     { path: '/play/:slug', name: 'play-episode', component: PlayView },
+    { path: '/ongoing', name: 'ongoing', component: OngoingView },
   ],
 })
 

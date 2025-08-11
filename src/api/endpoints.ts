@@ -3,4 +3,5 @@ export const EDNPOINT = {
   HOME: '/home',
   DETAIL: '/detail',
   PLAY: '/play',
+  ONGOING: '/ongoing',
 }
