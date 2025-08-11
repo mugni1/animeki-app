@@ -18,8 +18,8 @@ export default defineConfig({
       registerType: 'autoUpdate', // Service worker otomatis update
       manifest: {
         id: '/',
-        name: 'Animeki By AnuDev',
-        short_name: 'Animeki',
+        name: 'ANIMEKI By AnuDev',
+        short_name: 'ANIMEKI',
         description:
           'Platform streaming dan informasi anime terbaru dengan tampilan modern, cepat, dan mendukung mode offline melalui PWA.',
         theme_color: '#10B981',
@@ -28,13 +28,13 @@ export default defineConfig({
         start_url: '/',
         screenshots: [
           {
-            src: '/ss-wide.png',
+            src: '/screenshot-wide.png',
             sizes: '1280x720',
             type: 'image/png',
             form_factor: 'wide',
           },
           {
-            src: '/ss-narrow.png',
+            src: '/screenshot-narrow.png',
             sizes: '540x720',
             type: 'image/png',
             form_factor: 'narrow',

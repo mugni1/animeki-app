@@ -2,9 +2,9 @@
   <section
     class="w-full fixed top-0 z-50 dark:bg-gray-900/50 bg-white/50 backdrop-blur-md h-15 flex items-center"
   >
-    <nav class="container mx-auto px-3 flex items-center justify-between">
+    <nav class="container mx-auto ps-2 pe-3 flex items-center justify-between">
       <div class="w-2/12 flex items-center gap-2">
-        <img src="/pwa-192x192.png" alt="logo" class="h-12 aspect-square" /> <b>ANIMEKI</b>
+        <img src="/pwa-192x192.png" alt="logo" class="h-10 aspect-square" /> <b>ANIMEKI</b>
       </div>
       <div class="h-full items-center gap-5 text-sm hidden lg:flex">
         <RouterLink
