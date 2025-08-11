@@ -8,10 +8,10 @@
   <div v-else>
     <BaseContainer>
       <ListAnime
-        type="ongoing"
+        type="completed"
         :animes="data?.data || []"
-        icon="pi pi-clock"
-        title="Ongoing anime"
+        icon="pi pi-check"
+        title="Completed anime"
       />
 
       <Paginator
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import { useGetOngoingAnime } from '@/hooks/useGetAnimeOngoing'
+import { useGetAnimeCompleted } from '@/hooks/useGetAnimeCompleted'
 import { Paginator, type PageState } from 'primevue'
 import { computed, onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 
@@ -45,7 +45,7 @@ import ListAnime from '@/components/shared/List/ListAnime.vue'
 const page = ref(1)
 const totalRecords = ref(0)
 const pageLinkSize = ref(6) // default untuk layar besar
-const { data, error, isError, isPending, refetch } = useGetOngoingAnime(
+const { data, error, isError, isPending, refetch } = useGetAnimeCompleted(
   computed(() => page.value.toString()),
 )
 

@@ -4,4 +4,5 @@ export const EDNPOINT = {
   DETAIL: '/detail',
   PLAY: '/play',
   ONGOING: '/ongoing',
+  COMPLETED: '/completed',
 }

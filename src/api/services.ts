@@ -24,3 +24,10 @@ export const ongoingAPI = async (
   const currentPage = page || 1
   return httpClient.get(EDNPOINT.ONGOING + '?page=' + currentPage)
 }
+
+export const completedAPI = async (
+  page: string | null,
+): Promise<AxiosResponse<getResponseOngoing>> => {
+  const currentPage = page || 1
+  return httpClient.get(EDNPOINT.COMPLETED + '?page=' + currentPage)
+}

@@ -1,3 +1,4 @@
+import CompletedAnime from '@/views/CompletedAnime.vue'
 import DetailView from '@/views/DetailView.vue'
 import HomeView from '@/views/HomeView.vue'
 import OngoingView from '@/views/OngoingView.vue'
@@ -14,6 +15,7 @@ const router = createRouter({
     { path: '/detail/:slug', name: 'detail-anime', component: DetailView },
     { path: '/play/:slug', name: 'play-episode', component: PlayView },
     { path: '/ongoing', name: 'ongoing', component: OngoingView },
+    { path: '/completed', name: 'completed', component: CompletedAnime },
   ],
 })
 
