@@ -10,7 +10,7 @@
       <ListAnime
         type="completed"
         :animes="data?.data || []"
-        icon="pi pi-check"
+        icon="pi pi-check-circle"
         title="Completed anime"
       />
 
