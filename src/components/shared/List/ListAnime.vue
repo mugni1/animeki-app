@@ -4,6 +4,9 @@
       <h2 class="mb-2 font-bold text-base flex items-center gap-2 text-emerald-500 border-b pe-5">
         <i :class="icon"></i> {{ title }}
       </h2>
+      <RouterLink :to="type" class="text-base border-b ps-5 text-sky-500 mb-2 font-bold"
+        >Show more</RouterLink
+      >
     </div>
     <section class="w-full grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
       <CardAnime
