@@ -1,28 +1,42 @@
 <template>
   <section
-    class="w-full fixed top-0 z-50 dark:bg-gray-900 bg-white backdrop-blur-md h-15 flex items-center"
+    class="w-full fixed top-0 z-50 dark:bg-gray-900/50 bg-white/50 backdrop-blur-md h-15 flex items-center"
   >
     <nav class="container mx-auto px-3 flex items-center justify-between">
       <div class="w-2/12 flex items-center gap-2">
-        <b>Animeki</b>
+        <img src="/pwa-192x192.png" alt="logo" class="h-12 aspect-square" /> <b>ANIMEKI</b>
       </div>
       <div class="h-full items-center gap-5 text-sm hidden lg:flex">
-        <RouterLink to="/"> Home </RouterLink>
-        <RouterLink to="/ongoing"> Ongoing </RouterLink>
-        <RouterLink to="/completed"> Completed </RouterLink>
-        <RouterLink to="/favorite"> Favorite </RouterLink>
+        <RouterLink
+          :to="item.to"
+          v-for="(item, index) in items[0].items"
+          :key="index"
+          class="flex items-center gap-2"
+        >
+          <i :class="item.icon"></i> {{ item.label }}
+        </RouterLink>
       </div>
       <div class="lg:w-2/12 w-6/12 flex justify-end gap-2">
-        <Button type="button" variant="outlined" severity="secondary" icon="pi pi-search" />
+        <Button
+          :unstyled="true"
+          class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
+          icon="pi pi-search"
+        />
         <div class="lg:hidden">
           <Button
-            type="button"
-            variant="outlined"
-            severity="secondary"
+            :unstyled="true"
+            class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
             icon="pi pi-bars"
             @click="toggle"
           />
-          <Menu class="!bg-gray-900" ref="menu" id="overlay_menu" :model="items" :popup="true" />
+          <Menu
+            class="!bg-gray-900"
+            ref="menu"
+            id="overlay_menu"
+            :model="items"
+            :popup="true"
+            :router="true"
+          />
         </div>
       </div>
     </nav>
@@ -32,6 +46,9 @@
 <script setup lang="ts">
 import { Button, Menu } from 'primevue'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const menu = ref()
 const items = ref([
@@ -41,18 +58,38 @@ const items = ref([
       {
         label: 'Home',
         icon: 'pi pi-home',
+        to: '/',
+        command: () => router.push('/'),
       },
       {
         label: 'Ongoing',
         icon: 'pi pi-clock',
+        to: '/ongoing',
+        command: () => router.push('/ongoing'),
       },
       {
         label: 'Completed',
         icon: 'pi pi-check-circle',
+        to: '/completed',
+        command: () => router.push('/completed'),
+      },
+      {
+        label: 'Gentre',
+        icon: 'pi pi-th-large',
+        to: '/gentre',
+        command: () => router.push('/gentre'),
+      },
+      {
+        label: 'Studio',
+        icon: 'pi pi-building',
+        to: '/studio',
+        command: () => router.push('/studio'),
       },
       {
         label: 'Bookmark',
         icon: 'pi pi-bookmark',
+        to: '/bookmark',
+        command: () => router.push('/bookmark'),
       },
     ],
   },
