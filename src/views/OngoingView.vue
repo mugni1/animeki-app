@@ -19,12 +19,9 @@
         :rows="1"
         :totalRecords="totalRecords"
         :first="page - 1"
+        :pageLinkSize="pageLinkSize"
         @page="onPageChange"
       >
-        <template #start="slotProps">
-          Page: {{ slotProps.state.page + 1 }} Rows:
-          {{ data?.data.length }}
-        </template>
       </Paginator>
     </BaseContainer>
 
@@ -35,7 +32,7 @@
 <script setup lang="ts">
 import { useGetOngoingAnime } from '@/hooks/useGetAnimeOngoing'
 import { Paginator, type PageState } from 'primevue'
-import { computed, ref, watch, watchEffect } from 'vue'
+import { computed, onBeforeUnmount, onMounted, ref, watch, watchEffect } from 'vue'
 
 // components
 import ErrorPage from '@/components/layouts/ErrorPage.vue'
@@ -47,6 +44,7 @@ import ListAnime from '@/components/shared/List/ListAnime.vue'
 // state
 const page = ref(1)
 const totalRecords = ref(0)
+const pageLinkSize = ref(6) // default untuk layar besar
 const { data, error, isError, isPending, refetch } = useGetOngoingAnime(
   computed(() => page.value.toString()),
 )
@@ -54,6 +52,15 @@ const { data, error, isError, isPending, refetch } = useGetOngoingAnime(
 // methods
 function onPageChange(event: PageState) {
   page.value = event.page + 1
+}
+
+function updatePageLinkSize() {
+  if (window.innerWidth < 640) {
+    // < 640px = ukuran sm di Tailwind
+    pageLinkSize.value = 3
+  } else {
+    pageLinkSize.value = 6
+  }
 }
 
 // watchers
@@ -67,6 +74,15 @@ watchEffect(() => {
   if (page.value === 1 && data.value?.meta_data.total_records) {
     totalRecords.value = data.value.meta_data.total_records
   }
+})
+
+// mounted dan sebelum UnMounted
+onMounted(() => {
+  updatePageLinkSize()
+  window.addEventListener('resize', updatePageLinkSize)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updatePageLinkSize)
 })
 </script>
 
