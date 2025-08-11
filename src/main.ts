@@ -16,6 +16,10 @@ import Aura from '@primeuix/themes/aura'
 app.use(PrimeVue, {
   theme: {
     preset: Aura,
+    options: {
+      darkModeSelector: '.my-app-dark',
+      cssLayer: false,
+    },
   },
 })
 

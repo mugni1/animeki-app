@@ -5,14 +5,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* Integrasi Tailwind dark mode dengan PrimeVue */
+@custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
+
 body {
   @apply bg-white text-gray-900 selection:bg-emerald-600;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    @apply bg-gray-900 text-white;
-  }
+/* Mode dark berbasis class */
+.my-app-dark body {
+  @apply bg-gray-900 text-white;
 }
 
 .nata-sans {
