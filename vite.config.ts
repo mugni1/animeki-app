@@ -18,11 +18,12 @@ export default defineConfig({
       registerType: 'autoUpdate', // Service worker otomatis update
       manifest: {
         id: '/',
-        name: 'Animeki Application',
-        short_name: 'AnimekiApp',
-        description: 'Aplikasi Vue 3 dengan PWA support',
-        theme_color: '#42b983',
-        background_color: '#ffffff',
+        name: 'Animeki By AnuDev',
+        short_name: 'Animeki',
+        description:
+          'Platform streaming dan informasi anime terbaru dengan tampilan modern, cepat, dan mendukung mode offline melalui PWA.',
+        theme_color: '#10B981',
+        background_color: '#111827',
         display: 'standalone',
         start_url: '/',
         screenshots: [
