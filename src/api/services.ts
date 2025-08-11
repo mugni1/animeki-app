@@ -5,6 +5,7 @@ import type { getAnimeHomeResponse } from '@/types/home'
 import type { DetailResponse } from '@/types/detail'
 import type { GetResponsePlay } from '@/types/play'
 import type { getResponseOngoing } from '@/types/ongoing'
+import type { SearchParams } from '@/types/search'
 
 export const animeHomeAPI = async (): Promise<AxiosResponse<getAnimeHomeResponse>> => {
   return httpClient.get(EDNPOINT.HOME)
@@ -30,4 +31,12 @@ export const completedAPI = async (
 ): Promise<AxiosResponse<getResponseOngoing>> => {
   const currentPage = page || 1
   return httpClient.get(EDNPOINT.COMPLETED + '?page=' + currentPage)
+}
+
+export const searchAPI = async (
+  params: SearchParams,
+): Promise<AxiosResponse<getResponseOngoing>> => {
+  const key = params.keyword || ''
+  const currentPage = params.current_page || 1
+  return httpClient.get(`${EDNPOINT.SEARCH}?keyword=${key}&page=${currentPage}`)
 }

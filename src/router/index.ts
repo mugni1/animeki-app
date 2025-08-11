@@ -3,6 +3,7 @@ import DetailView from '@/views/DetailView.vue'
 import HomeView from '@/views/HomeView.vue'
 import OngoingView from '@/views/OngoingView.vue'
 import PlayView from '@/views/PlayView.vue'
+import SearchView from '@/views/SearchView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -16,6 +17,7 @@ const router = createRouter({
     { path: '/play/:slug', name: 'play-episode', component: PlayView },
     { path: '/ongoing', name: 'ongoing', component: OngoingView },
     { path: '/completed', name: 'completed', component: CompletedAnime },
+    { path: '/search', name: 'search', component: SearchView },
   ],
 })
 

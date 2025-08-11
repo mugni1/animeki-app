@@ -35,6 +35,7 @@
           :unstyled="true"
           class="btn-play h-10 w-10 !rounded-full !p-0 flex items-center justify-center"
           icon="pi pi-search"
+          @click="router.push({ name: 'search' })"
         />
         <div class="lg:hidden">
           <Button

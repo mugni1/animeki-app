@@ -5,4 +5,5 @@ export const EDNPOINT = {
   PLAY: '/play',
   ONGOING: '/ongoing',
   COMPLETED: '/completed',
+  SEARCH: '/search',
 }

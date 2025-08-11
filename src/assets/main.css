@@ -9,7 +9,7 @@
 @custom-variant dark (&:where(.my-app-dark, .my-app-dark *));
 
 body {
-  @apply bg-white text-gray-900 selection:bg-emerald-600;
+  @apply bg-white text-gray-900 selection:bg-emerald-600 dark:selection:text-white selection:text-slate-900;
 }
 
 /* Mode dark berbasis class */
@@ -25,6 +25,7 @@ body {
   font-family: 'Inter', sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  font-weight: 600;
 }
 
 .open-sans {

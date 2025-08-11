@@ -6,8 +6,8 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import { RouterView } from 'vue-router'
-import BaseNavbar from '@/components/shared/BaseNavbar.vue'
 import { useAppStore } from './stores/app'
+import BaseNavbar from './components/layouts/BaseNavbar.vue'
 
 const appStore = useAppStore()
 
