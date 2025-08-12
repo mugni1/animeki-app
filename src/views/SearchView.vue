@@ -7,10 +7,7 @@
 
   <!-- BASE CONTENT  -->
   <main v-else>
-    <div v-if="!data?.data || data.data.length < 1">
-      <h1 class="text-center mt-5">No Results</h1>
-    </div>
-    <div v-else>
+    <div>
       <BaseContainer>
         <h1
           class="font-extrabold text-4xl lg:text-5xl pt-8 text-center mb-2 text-transparent bg-gradient-to-r from-sky-500 to-emerald-500 bg-clip-text"
@@ -37,22 +34,27 @@
           />
         </div>
 
-        <ListAnime
-          type="completed"
-          :animes="data?.data || []"
-          icon="pi pi-search"
-          title="Search results"
-        />
-        <Paginator
-          v-if="totalRecords > 0"
-          class="mt-5"
-          :rows="1"
-          :totalRecords="totalRecords"
-          :first="page - 1"
-          :pageLinkSize="pageLinkSize"
-          @page="onPageChange"
-        >
-        </Paginator>
+        <div v-if="!data?.data || data.data.length < 1">
+          <h1 class="text-center">No Results</h1>
+        </div>
+        <div v-else>
+          <ListAnime
+            type="completed"
+            :animes="data?.data || []"
+            icon="pi pi-search"
+            title="Search results"
+          />
+          <Paginator
+            v-if="totalRecords > 0"
+            class="mt-5"
+            :rows="1"
+            :totalRecords="totalRecords"
+            :first="page - 1"
+            :pageLinkSize="pageLinkSize"
+            @page="onPageChange"
+          >
+          </Paginator>
+        </div>
       </BaseContainer>
       <FooterPage />
     </div>
