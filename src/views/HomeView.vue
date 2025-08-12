@@ -8,6 +8,7 @@
   <!-- CONTENT PAGE  -->
   <section v-else>
     <BaseContainer class="space-y-5">
+      <BaseSwipper :animes="data?.data?.ongoing_anime || []" />
       <ListAnime
         type="ongoing"
         :animes="data?.data?.ongoing_anime || []"
@@ -28,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import BaseSwipper from '@/components/layouts/BaseSwipper.vue'
 import ErrorPage from '@/components/layouts/ErrorPage.vue'
 import FooterPage from '@/components/layouts/FooterPage.vue'
 import LoadingPage from '@/components/layouts/LoadingPage.vue'
