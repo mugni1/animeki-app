@@ -31,7 +31,7 @@ const { animes } = defineProps<{ animes: AnimeItem[] }>()
   >
     <SwiperSlide v-for="(item, index) in animes" :key="index">
       <div
-        class="bg-white/5 text-white h-[35vh] lg:h-[40vh] text-center rounded-lg overflow-hidden relative"
+        class="bg-white/5 text-white h-[28vh] md:h-[30vh] lg:h-[40vh] text-center rounded-lg overflow-hidden relative"
       >
         <img :src="item.cover" class="w-full h-full object-cover object-center" alt="" />
         <div
