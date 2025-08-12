@@ -8,7 +8,7 @@
   <!-- BASE CONTENT  -->
   <main v-else>
     <div>
-      <BaseContainer>
+      <BaseContainer class="min-h-screen">
         <h1
           class="font-extrabold text-4xl lg:text-5xl pt-8 text-center mb-2 text-transparent bg-gradient-to-r from-sky-500 to-emerald-500 bg-clip-text"
         >
@@ -35,7 +35,7 @@
         </div>
 
         <div v-if="!data?.data || data.data.length < 1">
-          <h1 class="text-center">No Results</h1>
+          <h1 class="text-center text-base lg:text-lg">No Results</h1>
         </div>
         <div v-else>
           <ListAnime
