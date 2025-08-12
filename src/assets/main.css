@@ -56,3 +56,16 @@ body {
   width: 2px;
   height: 2px;
 }
+
+/* CARD  */
+.card-secondary {
+  @apply bg-gray-900/5 dark:bg-white/5 border border-gray-900/40 dark:border-white/40 p-3 rounded-md;
+}
+/* BUTTON SECONDARY  */
+.btn-secondary {
+  @apply bg-gray-900/5 dark:bg-white/5 border border-gray-900/40 dark:border-white/40 cursor-pointer hover:bg-white/20 transition-all active:bg-transparent py-2 rounded-md space-x-2 font-semibold;
+}
+/* INPUT SECONDARY  */
+.input-secondary {
+  @apply !bg-gray-900/5 dark:!bg-white/5 !rounded !border-gray-900/40 dark:!border-white/40 focus:!border-emerald-500;
+}

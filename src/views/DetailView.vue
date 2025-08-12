@@ -7,7 +7,10 @@
 
   <!-- Base Page  -->
   <div v-else>
+    <!-- background  -->
     <BgAnime :image_src="data?.data.cover || ''" />
+
+    <!-- information anime  -->
     <BaseContainer class="z-40 relative pt-20">
       <section class="w-full grid grid-cols-1 lg:grid-cols-4 gap-x-3 lg:gap-x-5">
         <!-- COLUMN 1 -->
@@ -23,25 +26,37 @@
           <div class="grid grid-cols-2 gap-2 lg:grid-cols-1">
             <Button
               :unstyled="true"
-              class="btn-play"
+              class="btn-secondary"
               label="Play now"
               icon="pi pi-play-circle"
               @click="router.push('/play/' + data?.data.first_episode.episode_slug)"
             />
-            <Button :unstyled="true" class="btn-play" label="Add to favorite" icon="pi pi-heart" />
+            <Button :unstyled="true" class="btn-secondary" label="Bookmark" icon="pi pi-bookmark" />
           </div>
           <!-- spe list  -->
-          <div
-            class="btn-play lg:block !cursor-auto hover:!bg-white/5 px-3 space-y-3 grid grid-cols-2 lg:grid-cols-1"
-          >
-            <SpeItem
-              v-for="(spe, index) in data?.data.spe || []"
-              :key="index"
-              :title="spe.title"
-              :text="spe.content"
-              :slug="spe.slug"
-            />
-          </div>
+          <CardSecondary>
+            <div class="lg:grid-cols-1 grid-cols-2 grid gap-2">
+              <SpeItem
+                v-for="(spe, index) in data?.data.spe || []"
+                :key="index"
+                :title="spe.title"
+                :text="spe.content"
+                :slug="spe.slug"
+              />
+            </div>
+          </CardSecondary>
+          <CardSecondary title="Genres" icon="pi pi-tags">
+            <div class="grid grid-cols-2 text-xs gap-3">
+              <Button
+                class="!text-xs"
+                size="small"
+                v-for="(genre, index) in data?.data.gentres || []"
+                :key="index"
+              >
+                {{ genre.title }}
+              </Button>
+            </div>
+          </CardSecondary>
         </section>
         <!--END COLUMN 1 -->
 
@@ -116,6 +131,7 @@ import FooterPage from '@/components/layouts/FooterPage.vue'
 import YoutubePlayer from '@/components/shared/VideoPlayer/YoutubePlayer.vue'
 import SinopsysAnime from '@/components/shared/DetailAnime/SinopsysAnime.vue'
 import TitleAnime from '@/components/shared/DetailAnime/TitleAnime.vue'
+import CardSecondary from '@/components/shared/card/CardSecondary.vue'
 
 const route = useRoute()
 const router = useRouter()

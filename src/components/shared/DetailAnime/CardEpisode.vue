@@ -1,8 +1,6 @@
 <template>
   <RouterLink :to="'/play/' + slug">
-    <div
-      class="border border-gray-900/40 bg-gray-900/5 dark:border-white/40 dark:bg-white/5 flex w-full rounded gap-3 lg:gap-5 cursor-pointer group transition-all duration-700 ease-linear"
-    >
+    <div class="card-secondary flex gap-2 !p-0 group">
       <div class="lg:w-2/12 w-4/12 aspect-square overflow-hidden relative rounded-l">
         <img :src="cover" class="object-cover object-top w-full h-full" />
         <div

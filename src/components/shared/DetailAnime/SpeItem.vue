@@ -1,8 +1,8 @@
 <template>
   <div>
-    <span class="font-bold text-sm md:text-base"> {{ props.title }}</span>
+    <span class="font-bold text-sm line-clamp-1"> {{ props.title }}</span>
     <p
-      class="text-xs md:text-sm line-clamp-1"
+      class="text-xs line-clamp-1"
       :class="
         props.slug != null
           ? 'text-emerald-400 cursor-pointer'
