@@ -2,7 +2,9 @@
 import { Button } from 'primevue'
 import BaseContainer from '../shared/BaseContainer.vue'
 import { defineModel, defineEmits } from 'vue'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const error = defineModel('error')
 const emits = defineEmits<{ (e: 'refetch'): void }>()
 </script>
@@ -20,6 +22,7 @@ const emits = defineEmits<{ (e: 'refetch'): void }>()
         icon="pi pi-home"
         raised
         variant="outlined"
+        @click="router.push('/')"
       />
     </div>
   </BaseContainer>
