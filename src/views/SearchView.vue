@@ -7,50 +7,55 @@
 
   <!-- BASE CONTENT  -->
   <main v-else>
-    <BaseContainer>
-      <h1
-        class="font-extrabold text-4xl lg:text-5xl pt-8 text-center mb-2 text-transparent bg-gradient-to-r from-sky-500 to-emerald-500 bg-clip-text"
-      >
-        Come explore the world of anime
-      </h1>
+    <div v-if="!data?.data || data.data.length < 1">
+      <h1 class="text-center mt-5">No Results</h1>
+    </div>
+    <div v-else>
+      <BaseContainer>
+        <h1
+          class="font-extrabold text-4xl lg:text-5xl pt-8 text-center mb-2 text-transparent bg-gradient-to-r from-sky-500 to-emerald-500 bg-clip-text"
+        >
+          Come explore the world of anime
+        </h1>
 
-      <div
-        class="dark:bg-gray-800 border-2 border-gray-900/10 dark:border-white/10 my-10 rounded-2xl p-5 lg:p-10 flex flex-col lg:flex-row gap-3"
-      >
-        <InputText
-          size="large"
-          variant="filled"
-          placeholder="Search Anime..."
-          class="!bg-gray-900/5 dark:!bg-white/5 !rounded-xl !border-gray-900/10 dark:!border-white/10 focus:!border-emerald-500 w-full"
-          v-model="searchKeyword"
-        />
-        <Button
+        <div
+          class="dark:bg-gray-800 border-2 border-gray-900/10 dark:border-white/10 my-10 rounded-2xl p-5 lg:p-10 flex flex-col lg:flex-row gap-3"
+        >
+          <InputText
+            size="large"
+            variant="filled"
+            placeholder="Search Anime..."
+            class="!bg-gray-900/5 dark:!bg-white/5 !rounded-xl !border-gray-900/10 dark:!border-white/10 focus:!border-emerald-500 w-full"
+            v-model="searchKeyword"
+          />
+          <Button
+            icon="pi pi-search"
+            label="Search"
+            class="!rounded-xl !px-5"
+            size="large"
+            @click="handleSearch"
+          />
+        </div>
+
+        <ListAnime
+          type="completed"
+          :animes="data?.data || []"
           icon="pi pi-search"
-          label="Search"
-          class="!rounded-xl !px-5"
-          size="large"
-          @click="handleSearch"
+          title="Search results"
         />
-      </div>
-
-      <ListAnime
-        type="completed"
-        :animes="data?.data || []"
-        icon="pi pi-search"
-        title="Search results"
-      />
-      <Paginator
-        v-if="totalRecords > 0"
-        class="mt-5"
-        :rows="1"
-        :totalRecords="totalRecords"
-        :first="page - 1"
-        :pageLinkSize="pageLinkSize"
-        @page="onPageChange"
-      >
-      </Paginator>
-    </BaseContainer>
-    <FooterPage />
+        <Paginator
+          v-if="totalRecords > 0"
+          class="mt-5"
+          :rows="1"
+          :totalRecords="totalRecords"
+          :first="page - 1"
+          :pageLinkSize="pageLinkSize"
+          @page="onPageChange"
+        >
+        </Paginator>
+      </BaseContainer>
+      <FooterPage />
+    </div>
   </main>
 </template>
 
