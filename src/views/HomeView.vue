@@ -6,7 +6,7 @@
   <ErrorPage v-else-if="isError" v-model:error="error" @refetch="refetch()" />
 
   <!-- CONTENT PAGE  -->
-  <section v-else>
+  <main v-else>
     <BaseContainer class="space-y-5">
       <BaseSwipper :animes="data?.data?.ongoing_anime || []" />
       <ListAnime
@@ -25,7 +25,7 @@
       />
     </BaseContainer>
     <FooterPage />
-  </section>
+  </main>
 </template>
 
 <script setup lang="ts">
