@@ -13,7 +13,8 @@
           :to="item.to"
           v-for="(item, index) in items[0].items"
           :key="index"
-          class="flex items-center gap-2"
+          class="flex items-center gap-2 transition-all duration-300"
+          :class="item.to == $route.fullPath && 'text-emerald-500'"
         >
           <i :class="item.icon"></i> {{ item.label }}
         </RouterLink>
@@ -67,6 +68,7 @@ import { ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
 
 const router = useRouter()
+// const route = useRoute()
 const menu = ref()
 const items = ref([
   {
@@ -76,6 +78,9 @@ const items = ref([
         label: 'Home',
         icon: 'pi pi-home',
         to: '/',
+        // get class() {
+        //   return `flex items-center gap-2 transition-all duration-300 ${route.currentRoute.value.fullPath == '/' ? 'text-emerald-500' : ''}`
+        // },
         command: () => router.push('/'),
       },
       {
@@ -91,10 +96,10 @@ const items = ref([
         command: () => router.push('/completed'),
       },
       {
-        label: 'Gentre',
+        label: 'Genre',
         icon: 'pi pi-th-large',
-        to: '/gentre',
-        command: () => router.push('/gentre'),
+        to: '/genre',
+        command: () => router.push('/genre'),
       },
       {
         label: 'Studio',
