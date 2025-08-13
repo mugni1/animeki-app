@@ -35,7 +35,7 @@
           />
         </form>
 
-        <div v-if="!data?.data || data.data.length < 1">
+        <div v-if="!data?.data || data.data.length < 1" class="card-secondary">
           <h1 class="text-center text-base lg:text-lg">No Results</h1>
         </div>
         <div v-else>
