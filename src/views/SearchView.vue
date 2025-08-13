@@ -24,7 +24,7 @@
             variant="filled"
             placeholder="Search Anime..."
             class="!bg-gray-900/5 dark:!bg-white/5 !rounded-xl !border-gray-900/10 dark:!border-white/10 focus:!border-emerald-500 w-full"
-            v-model="searchKeyword"
+            v-model="stores.inputKeyword"
           />
           <Button
             icon="pi pi-search"
@@ -65,23 +65,23 @@ import LoadingPage from '@/components/layouts/LoadingPage.vue'
 import BaseContainer from '@/components/shared/BaseContainer.vue'
 import ListAnime from '@/components/shared/List/ListAnime.vue'
 import { useGetAnimeSearch } from '@/hooks/useGetAnimeSearch'
+import { useSearchStore } from '@/stores/search'
 import { Button, InputText } from 'primevue'
 import { computed, ref, watchEffect } from 'vue'
 
 // state
+const stores = useSearchStore()
 const page = ref(1)
-const keyword = ref('')
-const searchKeyword = ref('')
 const totalRecords = ref(0)
 const { data, error, isError, isPending, refetch } = useGetAnimeSearch(
   computed(() => page.value.toString()),
-  computed(() => keyword.value),
+  computed(() => stores.keyword),
 )
 
 // methods
 const handleSearch = async () => {
-  keyword.value = searchKeyword.value
-  page.value = 1 // reset ke page pertama setiap kali search
+  stores.updateKeyword()
+  page.value = 1
   const result = await refetch()
   if (result.data?.meta_data.total_records) {
     totalRecords.value = result.data.meta_data.total_records
