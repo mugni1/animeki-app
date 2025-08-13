@@ -17,7 +17,7 @@
         <section class="flex lg:col-span-1 flex-col gap-2">
           <CoverAnime class="!w-6/12 mx-auto lg:!w-full" :image_src="data?.data.cover || ''" />
           <RatingAnime :rating="data?.data.rating || 0" />
-          <!-- TITILE for HP and TAB -->
+          <!-- TITLE for HP and TAB -->
           <TitleAnime
             class="!text-xl lg:!hidden text-center line-clamp-2 font-bold"
             :title="data?.data?.title || ''"
@@ -45,13 +45,14 @@
               />
             </div>
           </CardSecondary>
-          <CardSecondary title="Genres" icon="pi pi-tags">
+          <CardSecondary title="Genres" icon="pi pi-th-large">
             <div class="grid grid-cols-2 text-xs gap-3">
               <Button
                 class="!text-xs"
                 size="small"
                 v-for="(genre, index) in data?.data.gentres || []"
                 :key="index"
+                @click="router.push('/genre/' + genre.slug)"
               >
                 {{ genre.title }}
               </Button>
@@ -62,7 +63,7 @@
 
         <!-- COLUMN 2 -->
         <section class="lg:col-span-3">
-          <!-- TITILE for PC  -->
+          <!-- TITLE for PC  -->
           <TitleAnime
             :title="data?.data.title || ''"
             class="hidden lg:!block line-clamp-1 font-bold"
@@ -99,7 +100,7 @@
               />
             </div>
           </div>
-          <!-- SINOPSYS  -->
+          <!-- SYNOPSYS  -->
           <SinopsysAnime :content="data?.data?.synopsis || ''" />
         </section>
         <!--END COLUMN 2 -->

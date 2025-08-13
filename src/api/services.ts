@@ -1,36 +1,37 @@
 import type { AxiosResponse } from 'axios'
 import { httpClient } from './httpClient'
-import { EDNPOINT } from './endpoints'
+import { ENDPOINT } from './endpoints'
 import type { getAnimeHomeResponse } from '@/types/home'
 import type { DetailResponse } from '@/types/detail'
 import type { GetResponsePlay } from '@/types/play'
 import type { getResponseOngoing } from '@/types/ongoing'
 import type { SearchParams } from '@/types/search'
+import type { getResponseGenres } from '@/types/genres'
 
 export const animeHomeAPI = async (): Promise<AxiosResponse<getAnimeHomeResponse>> => {
-  return httpClient.get(EDNPOINT.HOME)
+  return httpClient.get(ENDPOINT.HOME)
 }
 
 export const animeDetailAPI = async (slug: string): Promise<AxiosResponse<DetailResponse>> => {
-  return httpClient.get(EDNPOINT.DETAIL + '/' + slug)
+  return httpClient.get(ENDPOINT.DETAIL + '/' + slug)
 }
 
 export const playEpisodeAPI = async (slug: string): Promise<AxiosResponse<GetResponsePlay>> => {
-  return httpClient.get(EDNPOINT.PLAY + '/' + slug)
+  return httpClient.get(ENDPOINT.PLAY + '/' + slug)
 }
 
 export const ongoingAPI = async (
   page: string | null,
 ): Promise<AxiosResponse<getResponseOngoing>> => {
   const currentPage = page || 1
-  return httpClient.get(EDNPOINT.ONGOING + '?page=' + currentPage)
+  return httpClient.get(ENDPOINT.ONGOING + '?page=' + currentPage)
 }
 
 export const completedAPI = async (
   page: string | null,
 ): Promise<AxiosResponse<getResponseOngoing>> => {
   const currentPage = page || 1
-  return httpClient.get(EDNPOINT.COMPLETED + '?page=' + currentPage)
+  return httpClient.get(ENDPOINT.COMPLETED + '?page=' + currentPage)
 }
 
 export const searchAPI = async (
@@ -38,5 +39,9 @@ export const searchAPI = async (
 ): Promise<AxiosResponse<getResponseOngoing>> => {
   const key = params.keyword || ''
   const currentPage = params.current_page || 1
-  return httpClient.get(`${EDNPOINT.SEARCH}?keyword=${key}&page=${currentPage}`)
+  return httpClient.get(`${ENDPOINT.SEARCH}?keyword=${key}&page=${currentPage}`)
+}
+
+export const genresAPI = async (): Promise<AxiosResponse<getResponseGenres>> => {
+  return httpClient.get(ENDPOINT.GENRES)
 }

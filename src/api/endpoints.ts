@@ -1,4 +1,4 @@
-export const EDNPOINT = {
+export const ENDPOINT = {
   // LOGIN: '/login',
   HOME: '/home',
   DETAIL: '/detail',
@@ -6,4 +6,5 @@ export const EDNPOINT = {
   ONGOING: '/ongoing',
   COMPLETED: '/completed',
   SEARCH: '/search',
+  GENRES: '/gentres',
 }
