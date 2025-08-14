@@ -20,7 +20,7 @@ const router = useRouter()
 
   <main v-else>
     <BaseContainer>
-      <CardSecondary title="Genres" icon="pi pi-th-large">
+      <CardSecondary title="List Genre" icon="pi pi-th-large">
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
           <Button
             v-for="(genre, index) in data?.data || []"
