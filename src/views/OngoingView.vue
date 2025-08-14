@@ -21,7 +21,7 @@
 
 <script setup lang="ts">
 import { useGetOngoingAnime } from '@/hooks/useGetAnimeOngoing'
-import { computed, ref, watch, watchEffect } from 'vue'
+import { computed, ref, watchEffect } from 'vue'
 
 // components
 import ErrorPage from '@/components/layouts/ErrorPage.vue'
@@ -38,10 +38,7 @@ const { data, error, isError, isPending, refetch } = useGetOngoingAnime(
   computed(() => page.value.toString()),
 )
 
-// watchers
-watch(page, () => {
-  refetch()
-})
+// watch effect
 watchEffect(() => {
   if (page.value === 1 && data.value?.meta_data.total_records) {
     totalRecords.value = data.value.meta_data.total_records

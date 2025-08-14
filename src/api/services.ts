@@ -45,3 +45,11 @@ export const searchAPI = async (
 export const genresAPI = async (): Promise<AxiosResponse<getResponseGenres>> => {
   return httpClient.get(ENDPOINT.GENRES)
 }
+
+export const animeByGenre = async (
+  slug: string,
+  page?: string | number,
+): Promise<AxiosResponse<getResponseOngoing>> => {
+  const currentPage = page || 1
+  return httpClient.get(`${ENDPOINT.GENRE}/${slug}?page=${currentPage}`)
+}

@@ -1,6 +1,7 @@
 import CompletedAnime from '@/views/CompletedAnime.vue'
 import DetailView from '@/views/DetailView.vue'
-import GenreView from '@/views/GenreView.vue'
+import GenreAnimeView from '@/views/Genres/GenreAnimeView.vue'
+import GenreView from '@/views/Genres/GenreView.vue'
 import HomeView from '@/views/HomeView.vue'
 import OngoingView from '@/views/OngoingView.vue'
 import PlayView from '@/views/PlayView.vue'
@@ -20,6 +21,7 @@ const router = createRouter({
     { path: '/completed', name: 'completed', component: CompletedAnime },
     { path: '/search', name: 'search', component: SearchView },
     { path: '/genre', name: 'genre', component: GenreView },
+    { path: '/genre/:slug', name: 'genre-anime', component: GenreAnimeView },
   ],
 })
 

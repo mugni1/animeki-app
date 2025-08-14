@@ -1,5 +1,4 @@
 export const ENDPOINT = {
-  // LOGIN: '/login',
   HOME: '/home',
   DETAIL: '/detail',
   PLAY: '/play',
@@ -7,4 +6,5 @@ export const ENDPOINT = {
   COMPLETED: '/completed',
   SEARCH: '/search',
   GENRES: '/gentres',
+  GENRE: '/gentre',
 }
