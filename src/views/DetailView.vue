@@ -32,12 +32,30 @@
               @click="router.push('/play/' + data?.data.first_episode.episode_slug)"
             />
             <Button
+              v-if="!stores.animes.find((item) => item.title == data?.data.title)"
               :unstyled="true"
               class="btn-secondary"
               label="Bookmark"
               icon="pi pi-bookmark"
               @click="
                 stores.setAnime({
+                  cover: data?.data.cover || '',
+                  title: data?.data.title || '',
+                  slug: slug,
+                  type_station:
+                    data?.data?.spe?.find((item) => item.title.toLowerCase() == 'type')?.content ||
+                    '',
+                })
+              "
+            />
+            <Button
+              v-else
+              :unstyled="true"
+              class="btn-secondary"
+              label="Bookmark"
+              icon="pi pi-bookmark-fill"
+              @click="
+                stores.removeAnime({
                   cover: data?.data.cover || '',
                   title: data?.data.title || '',
                   slug: slug,

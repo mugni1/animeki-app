@@ -16,7 +16,14 @@ export const useBookmark = defineStore(
       }
     }
 
-    return { animes, setAnime }
+    const removeAnime = (data: AnimeItem) => {
+      const index = animes.value.findIndex((item) => item.title == data.title)
+      if (index !== -1) {
+        animes.value.splice(index, 1) // hapus 1 elemen di posisi index
+      }
+    }
+
+    return { animes, setAnime, removeAnime }
   },
   { persist: true },
 )
