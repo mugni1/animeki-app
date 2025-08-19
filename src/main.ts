@@ -39,11 +39,13 @@ import BaseContainer from './components/shared/BaseContainer.vue'
 import CardSecondary from './components/shared/card/CardSecondary.vue'
 import { Button } from 'primevue'
 import FooterPage from './components/layouts/FooterPage.vue'
+import CardAnime from './components/shared/CardAnime.vue'
 app.component('ErrorPage', ErrorPage)
 app.component('LoadingPage', LoadingPage)
 app.component('FooterPage', FooterPage)
 app.component('CardSecondary', CardSecondary)
 app.component('BaseContainer', BaseContainer)
 app.component('BaseButton', Button)
+app.component('CardAnime', CardAnime)
 
 app.mount('#app')
