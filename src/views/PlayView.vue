@@ -58,9 +58,7 @@
       <!-- COLUMN 2  -->
       <section class="lg:col-span-1">
         <div class="flex">
-          <h2 class="mb-2 font-bold text-base flex items-center gap-2 text-emerald-500 border-b pe-5">
-            <i class="pi pi-thumbs-up"></i> Recommendation anime
-          </h2>
+          <b class="mb-2 text-base flex items-center text-emerald-500 border-b pe-5 gap-2"> <i class="pi pi-thumbs-up"></i> Recommendation Anime </b>
         </div>
         <div class="w-full grid grid-cols-3 gap-3">
           <CardAnime

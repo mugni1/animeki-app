@@ -1,15 +1,10 @@
 <template>
   <section>
     <div class="flex items-center justify-between">
-      <h2 class="mb-2 font-bold text-base flex items-center gap-2 text-emerald-500 border-b pe-5">
-        <i :class="icon"></i> {{ title }}
-      </h2>
-      <RouterLink
-        v-if="showMore"
-        :to="type"
-        class="text-base border-b ps-5 text-sky-500 mb-2 font-bold"
-        >Show more</RouterLink
-      >
+      <b class="mb-2 text-base flex items-center text-emerald-500 border-b pe-5 gap-2"><i :class="icon"></i> {{ title }}</b>
+      <RouterLink v-if="showMore" :to="type">
+        <b class="text-base border-b ps-5 text-sky-500 mb-2 gap-2 flex items-center"> <i class="pi pi-external-link"></i> Show more </b>
+      </RouterLink>
     </div>
     <section class="w-full grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
       <CardAnime
