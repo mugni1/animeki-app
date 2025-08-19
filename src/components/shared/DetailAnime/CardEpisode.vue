@@ -6,17 +6,18 @@
         <div
           class="absolute rounded-l -inset-1 items-center justify-center hidden group-hover:flex backdrop-blur-sm transition-all duration-700 ease-linear"
         >
-          <IconPlayCircle class="size-20" />
+          <IconPlayCircle class="size-20 text-white" />
         </div>
       </div>
-      <div
-        class="w-10/12 flex flex-col py-2 justify-between group-hover:text-emerald-500 text-sm md:text-base"
-      >
+      <div class="w-10/12 flex flex-col py-2 justify-between group-hover:text-emerald-500 text-sm md:text-base">
         <div class="flex flex-col">
-          <b class="line-clamp-1">{{ title }}</b>
-          <b class="line-clamp-1">Episode {{ episode }}</b>
+          <h2 class="line-clamp-1 font-bold">{{ title }}</h2>
+          <p class="line-clamp-1">Episode {{ episode }}</p>
         </div>
-        <p class="line-clamp-1">{{ date }}</p>
+        <p class="line-clamp-1 text-sm flex items-center gap-1">
+          <i class="pi pi-calendar-clock"></i>
+          {{ date }}
+        </p>
       </div>
     </div>
   </RouterLink>
