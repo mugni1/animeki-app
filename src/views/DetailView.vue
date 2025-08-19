@@ -64,7 +64,7 @@
           <RatingAnime class="lg:!flex !hidden !justify-start !mb-3" :rating="data?.data.rating || 0" />
           <!-- tab-header  -->
           <TabsHeader
-            class="mb-2"
+            class="mb-2 !mt-2 lg:!mt-0"
             @changeToTrailer="changeTabToTrailer"
             @changeToEpisode="changeTabToEpisode"
             @changeToCharacters="changeTabToCharacter"
