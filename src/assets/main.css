@@ -69,3 +69,15 @@ body {
 .input-secondary {
   @apply !bg-gray-900/5 dark:!bg-white/5 !rounded !border-gray-900/40 dark:!border-white/40 focus:!border-emerald-500;
 }
+
+/* TITLE ANIME DETAIL  */
+.title-anime-detail-sm {
+  @apply text-xl text-center line-clamp-2 font-extrabold hidden;
+}
+
+.title-anime-detail-lg {
+  @apply text-xl line-clamp-2 font-extrabold text-start hidden lg:block;
+}
+.container-btn-play-and-bookmark {
+  @apply grid grid-cols-2 gap-2 lg:grid-cols-1;
+}
