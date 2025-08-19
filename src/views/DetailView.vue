@@ -1,12 +1,7 @@
 <template>
-  <!-- Loading Page  -->
   <LoadingPage v-if="isPending" />
-
-  <!-- Error Page  -->
   <ErrorPage v-else-if="isError" v-model:error="error" @refetch="refetch()" />
-
-  <!-- Base Page  -->
-  <div v-else>
+  <main v-else>
     <BgAnime :image_src="data?.data.cover || ''" />
     <BaseContainer class="z-40 relative pt-20">
       <section class="w-full grid grid-cols-1 lg:grid-cols-4 gap-x-3 lg:gap-x-5">
@@ -30,9 +25,16 @@
               class="btn-secondary"
               label="Bookmark"
               icon="pi pi-bookmark"
+              @click="setAnimeToBookmark(data)"
+            />
+            <BaseButton
+              v-else
+              :unstyled="true"
+              class="btn-secondary"
+              label="Bookmark"
+              icon="pi pi-bookmark-fill"
               @click="removeAnimeInBookmark(data)"
             />
-            <BaseButton v-else :unstyled="true" class="btn-secondary" label="Bookmark" icon="pi pi-bookmark-fill" @click="setAnimeToBookmark(data)" />
           </div>
           <!-- list-spe -->
           <CardSecondary>
@@ -43,15 +45,15 @@
           <!-- list-genre  -->
           <CardSecondary title="Genres" icon="pi pi-th-large">
             <div class="grid grid-cols-2 text-xs gap-3">
-              <Button
+              <BaseButton
+                v-for="(genre, index) in data?.data.gentres || []"
                 class="!text-xs"
                 size="small"
-                v-for="(genre, index) in data?.data.gentres || []"
                 :key="index"
                 @click="router.push('/genre/' + genre.slug)"
               >
                 {{ genre.title }}
-              </Button>
+              </BaseButton>
             </div>
           </CardSecondary>
         </div>
@@ -61,7 +63,7 @@
           <h1 class="title-anime-detail-lg">{{ data?.data?.title || '' }}</h1>
           <RatingAnime class="lg:!flex !hidden !justify-start !mb-3" :rating="data?.data.rating || 0" />
           <!-- tab-header  -->
-          <TabsDetail
+          <TabsHeader
             class="mb-2"
             @changeToTrailer="changeTabToTrailer"
             @changeToEpisode="changeTabToEpisode"
@@ -85,27 +87,26 @@
       </section>
     </BaseContainer>
     <FooterPage />
-  </div>
+  </main>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useGetDetail } from '@/hooks/useGetDetail'
 import { useRoute, useRouter } from 'vue-router'
-import { computed } from 'vue'
 import { useBookmark } from '@/stores/bookmark'
+import type { DetailResponse } from '@/types/detail'
 
 // components
 import BgAnime from '@/components/shared/BgAnime.vue'
 import CoverAnime from '@/components/shared/DetailAnime/CoverAnime.vue'
 import SpeItem from '@/components/shared/DetailAnime/SpeItem.vue'
-import TabsDetail from '@/components/shared/DetailAnime/TabsDetail.vue'
-import TabContentEpisode from '@/components/shared/DetailAnime/TabContentEpisode.vue'
 import RatingAnime from '@/components/shared/DetailAnime/RatingAnime.vue'
+import SynopsysAnime from '@/components/shared/DetailAnime/SynopsysAnime.vue'
+import TabsHeader from '@/components/shared/DetailAnime/TabsHeader.vue'
+import TabContentEpisode from '@/components/shared/DetailAnime/TabContentEpisode.vue'
 import TabContentCharacters from '@/components/shared/DetailAnime/TabContentCharacters.vue'
 import YoutubePlayer from '@/components/shared/VideoPlayer/YoutubePlayer.vue'
-import SynopsysAnime from '@/components/shared/DetailAnime/SynopsysAnime.vue'
-import type { DetailResponse } from '@/types/detail'
 
 // state
 const stores = useBookmark()
