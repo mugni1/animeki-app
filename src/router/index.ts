@@ -1,3 +1,4 @@
+import BookmarkView from '@/views/BookmarkView.vue'
 import CompletedAnime from '@/views/CompletedAnime.vue'
 import DetailView from '@/views/DetailView.vue'
 import GenreAnimeView from '@/views/Genres/GenreAnimeView.vue'
@@ -26,6 +27,7 @@ const router = createRouter({
     { path: '/genre/:slug', name: 'genre-anime', component: GenreAnimeView },
     { path: '/studio', name: 'studio', component: StudioView },
     { path: '/studio/:slug', name: 'anime-by-genre', component: AnimeByStudioView },
+    { path: '/bookmark', name: 'bookmark', component: BookmarkView },
   ],
 })
 

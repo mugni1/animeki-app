@@ -31,7 +31,22 @@
               icon="pi pi-play-circle"
               @click="router.push('/play/' + data?.data.first_episode.episode_slug)"
             />
-            <Button :unstyled="true" class="btn-secondary" label="Bookmark" icon="pi pi-bookmark" />
+            <Button
+              :unstyled="true"
+              class="btn-secondary"
+              label="Bookmark"
+              icon="pi pi-bookmark"
+              @click="
+                stores.setAnime({
+                  cover: data?.data.cover || '',
+                  title: data?.data.title || '',
+                  slug: slug,
+                  type_station:
+                    data?.data?.spe?.find((item) => item.title.toLowerCase() == 'type')?.content ||
+                    '',
+                })
+              "
+            />
           </div>
           <!-- spe list  -->
           <CardSecondary>
@@ -133,7 +148,9 @@ import YoutubePlayer from '@/components/shared/VideoPlayer/YoutubePlayer.vue'
 import SinopsysAnime from '@/components/shared/DetailAnime/SinopsysAnime.vue'
 import TitleAnime from '@/components/shared/DetailAnime/TitleAnime.vue'
 import CardSecondary from '@/components/shared/card/CardSecondary.vue'
+import { useBookmark } from '@/stores/bookmark'
 
+const stores = useBookmark()
 const route = useRoute()
 const router = useRouter()
 const slug = route.params.slug as string
