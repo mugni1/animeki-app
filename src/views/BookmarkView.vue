@@ -23,7 +23,7 @@ const stores = useBookmark()
       <ListAnime
         :animes="stores.animes"
         type="recomendation"
-        icon="pi pi-bookmark"
+        icon="pi pi-bookmark-fill"
         :title="`Bookmark`"
       />
     </BaseContainer>
