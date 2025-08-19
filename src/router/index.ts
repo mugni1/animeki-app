@@ -6,6 +6,7 @@ import HomeView from '@/views/HomeView.vue'
 import OngoingView from '@/views/OngoingView.vue'
 import PlayView from '@/views/PlayView.vue'
 import SearchView from '@/views/SearchView.vue'
+import StudioView from '@/views/Studios/StudioView.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -22,6 +23,7 @@ const router = createRouter({
     { path: '/search', name: 'search', component: SearchView },
     { path: '/genre', name: 'genre', component: GenreView },
     { path: '/genre/:slug', name: 'genre-anime', component: GenreAnimeView },
+    { path: '/studio', name: 'studio', component: StudioView },
   ],
 })
 

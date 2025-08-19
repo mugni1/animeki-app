@@ -7,4 +7,5 @@ export const ENDPOINT = {
   SEARCH: '/search',
   GENRES: '/gentres',
   GENRE: '/gentre',
+  STUDIOS: '/studios',
 }
