@@ -7,7 +7,7 @@ import type { GetResponsePlay } from '@/types/play'
 import type { getResponseOngoing } from '@/types/ongoing'
 import type { SearchParams } from '@/types/search'
 import type { getResponseGenres } from '@/types/genres'
-import type { GetResponseStudio } from '@/types/studio'
+import type { GetResponseAnimeByStudio, GetResponseStudio } from '@/types/studio'
 
 export const animeHomeAPI = async (): Promise<AxiosResponse<getAnimeHomeResponse>> => {
   return httpClient.get(ENDPOINT.HOME)
@@ -57,4 +57,12 @@ export const animeByGenre = async (
 
 export const studiosAPI = async (): Promise<AxiosResponse<GetResponseStudio>> => {
   return httpClient.get(ENDPOINT.STUDIOS)
+}
+
+export const animeByStudioAPI = async (
+  slug: string,
+  page?: string | number,
+): Promise<AxiosResponse<GetResponseAnimeByStudio>> => {
+  const currentPage = page || 1
+  return httpClient.get(`${ENDPOINT.STUDIO}/${slug}?page=${currentPage}`)
 }

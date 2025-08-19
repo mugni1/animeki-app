@@ -8,4 +8,5 @@ export const ENDPOINT = {
   GENRES: '/gentres',
   GENRE: '/gentre',
   STUDIOS: '/studios',
+  STUDIO: '/studio',
 }
