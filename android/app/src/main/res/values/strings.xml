@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">ANIMEKI</string>
+    <string name="title_activity_main">ANIMEKI</string>
+    <string name="package_name">app.vercel.animeki</string>
+    <string name="custom_url_scheme">app.vercel.animeki</string>
+</resources>
