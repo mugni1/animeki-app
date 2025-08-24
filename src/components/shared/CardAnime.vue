@@ -3,9 +3,7 @@
     <RouterLink :to="`/detail/${props.slug}`">
       <div class="h-auto rounded-md overflow-hidden mb-2 relative cursor-pointer">
         <img :src="cover" alt="" class="w-full h-full object-center object-cover" />
-        <div
-          class="hover:bg-black/30 absolute -inset-1 hover:backdrop-blur-sm transition-all flex items-center justify-center group"
-        >
+        <div class="hover:bg-black/30 absolute -inset-1 hover:backdrop-blur-sm transition-all flex items-center justify-center group">
           <span
             class="hidden group-hover:flex group-hover:translate-0 translate-y-40 transition-all flex-col gap-3 justify-center items-center text-white"
           >
