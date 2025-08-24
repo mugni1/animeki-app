@@ -32,6 +32,10 @@ app.use(PrimeVue, {
 import { VueQueryPlugin } from '@tanstack/vue-query'
 app.use(VueQueryPlugin)
 
+// VUE MOTION
+import { MotionPlugin } from '@vueuse/motion'
+app.use(MotionPlugin)
+
 // COMPONENTS
 import ErrorPage from './components/layouts/ErrorPage.vue'
 import LoadingPage from './components/layouts/LoadingPage.vue'

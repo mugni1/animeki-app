@@ -7,16 +7,16 @@
       </RouterLink>
     </div>
     <section class="w-full grid grid-cols-3 md:grid-cols-4 xl:grid-cols-5 gap-3">
-      <CardAnime
-        v-for="(anime, index) in animes"
-        :slug="anime.slug"
-        :status="type"
-        :key="index"
-        :title="anime.title"
-        :eps="anime?.episode || ''"
-        :type="anime?.type_station || ''"
-        :cover="anime.cover"
-      />
+      <div v-for="(anime, index) in animes" :key="index" v-motion-slide-visible-bottom>
+        <CardAnime
+          :slug="anime.slug"
+          :status="type"
+          :title="anime.title"
+          :eps="anime?.episode || ''"
+          :type="anime?.type_station || ''"
+          :cover="anime.cover"
+        />
+      </div>
     </section>
   </section>
 </template>

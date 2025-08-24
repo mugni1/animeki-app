@@ -53,27 +53,9 @@
         </div>
         <ListServer v-model:main-player="mainPlayer" :listServer="data?.data?.mirror_server || []" />
       </section>
-      <!-- END COLUMN 1  -->
 
       <!-- COLUMN 2  -->
-      <section class="lg:col-span-1">
-        <div class="flex">
-          <b class="mb-2 text-base flex items-center text-emerald-500 border-b pe-5 gap-2"> <i class="pi pi-thumbs-up"></i> Recommendation Anime </b>
-        </div>
-        <div class="w-full grid grid-cols-3 gap-3">
-          <CardAnime
-            v-for="(anime, index) in data?.data?.recomended_animes || []"
-            :slug="anime.slug"
-            :status="'recomendation'"
-            :key="index"
-            :title="anime.title"
-            :type="anime.type_station"
-            :cover="anime.cover"
-            :eps="''"
-          />
-        </div>
-      </section>
-      <!-- END COLUMN 1  -->
+      <ListAnime :animes="data?.data?.recomended_animes || []" title="Recommendation" icon="pi pi-thumbs-up" type="recomendation" />
     </BaseContainer>
     <FooterPage />
   </main>
@@ -91,6 +73,7 @@ import EpisodePlayer from '@/components/shared/VideoPlayer/EpisodePlayer.vue'
 import TitleAndDatePlayEps from '@/components/shared/PlayEpisode/TitleAndDatePlayEps.vue'
 import ListServer from '@/components/shared/PlayEpisode/ListServer.vue'
 import { Message } from 'primevue'
+import ListAnime from '@/components/shared/List/ListAnime.vue'
 
 // state
 const route = useRoute()
